@@ -1,0 +1,53 @@
+body {
+    background-color:bisque;
+    margin: 0;
+    height: 100vh; 
+}
+
+.login-box {
+    background: linear-gradient(to bottom, lightsalmon 20%, lightsalmon 20%, aliceblue 20%);
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
+    padding: 30px;
+    text-align: center;
+    width: 30%;
+    height: 30%;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#login-header {
+    color: aliceblue;
+    position: absolute; 
+    top: 5%; 
+    left: 5%; 
+    margin: 0; 
+}
+
+#login-input {
+    padding: 2%;
+    margin-top: 85px; /* Use fixed margin */
+    border: 1px solid lightsalmon;
+    border-radius: 5px;
+}
+
+#password-login-input {
+    padding: 2%;
+    margin-top: 10px; /* Use fixed margin */
+    border: 1px solid lightsalmon;
+    border-radius: 5px;
+}
+
+
+#login-button {
+    margin-top: 5%;
+    border-radius: 5%;
+    border: 0cap;
+    height: 10%;
+    width: 15%;
+    background-color: lightsalmon;
+    color:aliceblue;
+}
