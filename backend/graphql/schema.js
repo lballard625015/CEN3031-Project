@@ -9,11 +9,33 @@ const typeDefs = gql`
         age: Int!,
         height: Int!,
         goal: String!
+    }
 
+    type Exercise {
+        name: String!,
+        sets: Int!,
+        reps: Int!
     }
+
+    type Workout {
+        name: String!,
+        workout: [Exercise]
+    }
+
+    input ExerciseInput {
+        name: String!,
+        sets: Int!,
+        reps: Int!
+    }
+
     type Query {
-        getUsers: [User]
+        getUser(username: String!): Boolean,
+        getEmail(email: String!): Boolean,
+        getPassword(password: String!): Boolean,
+        getExercises: [Exercise],
+        getWorkouts: [Workout]
     }
+
     type Mutation {
         createUser(
             username: String!,
@@ -22,7 +44,18 @@ const typeDefs = gql`
             age: Int!,
             height: Int!,
             goal: String!
-            ): User
+        ): User
+
+        createExercise(
+            name: String!,
+            sets: Int!,
+            reps: Int!
+        ): Exercise
+
+        createWorkout(
+            name: String!,
+            workout: [ExerciseInput]
+        ): Workout
     }
 `;
 

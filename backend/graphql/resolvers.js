@@ -2,12 +2,19 @@ const User = require('../models/User');
 
 const resolvers = {
     Query: {
-        getUsers: async () => {
-            try {
-                return await User.find();
-            } catch (error) {
-                throw new Error('Failed to fetch users');
-            }
+        getUser: async (_, {username}) => {
+            const user = await User.findOne({username});
+            return !!user;
+        },
+
+        getEmail: async(_, {email}) => {
+            const emailExists = await User.findOne({email});
+            return !!emailExists;
+        },
+
+        getPassword: async(_, {password}) => {
+            const passwordExists = await User.findOne({password});
+            return !!passwordExists;
         }
     },
     Mutation: {
