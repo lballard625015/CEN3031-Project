@@ -1,5 +1,6 @@
 import Login from './components/Login';
 import Register from './components/Register';
+import Home from './components/Home';
 
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
@@ -14,8 +15,9 @@ function App() {
     <ApolloProvider client={client}>
     <Router>
       <Routes>
-        <Route path="/login" element={<Login />}/>
+        <Route path="/" element={<Login />}/>
         <Route path="/register" element={<Register />}/>
+        <Route path="/home" element={<Home />}/>
       </Routes>
     </Router>
   </ApolloProvider>

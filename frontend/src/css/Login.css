@@ -4,6 +4,13 @@ body {
     height: 100vh; 
 }
 
+.title {
+    color: white;
+    font-size: 500%;
+    text-align: center;
+    padding-top: 40px;
+}
+
 .login-box {
     background: linear-gradient(to bottom, lightsalmon 20%, lightsalmon 20%, aliceblue 20%);
     border-radius: 5px;
@@ -29,25 +36,57 @@ body {
 
 #login-input {
     padding: 2%;
-    margin-top: 85px; /* Use fixed margin */
+    margin-top: 85px;
     border: 1px solid lightsalmon;
     border-radius: 5px;
+}
+
+.error-container {
+    height: 1.5em; 
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    line-height: 1.5em;
+    margin: 0;
 }
 
 #password-login-input {
     padding: 2%;
-    margin-top: 10px; /* Use fixed margin */
+    margin-top: 10px;
+    margin-bottom: 10px; 
     border: 1px solid lightsalmon;
     border-radius: 5px;
 }
 
-
 #login-button {
-    margin-top: 5%;
+    margin-top: -15%; 
+    margin-bottom: 5px; 
     border-radius: 5%;
-    border: 0cap;
+    border: 0;
     height: 10%;
     width: 15%;
     background-color: lightsalmon;
-    color:aliceblue;
+    color: aliceblue;
 }
+
+#reg-button {
+    margin-top: 5px; 
+    border-radius: 5%;
+    border: 0;
+    height: 10%;
+    width: 15%;
+    background-color: lightsalmon;
+    color: aliceblue;
+}
+
+
+
+
+
+
