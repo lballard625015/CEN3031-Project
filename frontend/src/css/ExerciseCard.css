@@ -1,0 +1,26 @@
+.exercise-card {
+    width: 150px;       /* Set a fixed width */
+    height: 150px;      /* Set a fixed height to make it a square */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.exercise-name {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.exercise-details p {
+    margin: 4px 0;
+    font-size: 0.9em;
+}

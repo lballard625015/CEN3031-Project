@@ -53,7 +53,7 @@ function Login() {
             setError("Invalid credentials");
             return;
         }
-
+        localStorage.setItem("username", username);
         window.location.href = "/home";
     }
 
