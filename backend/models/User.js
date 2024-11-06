@@ -6,7 +6,19 @@ const userSchema = new mongoose.Schema({
     password: {type: String, required: true},
     age: {type: Number, required: true},
     height: {type: Number, required: true},
-    goal: {type: String, required: true}
+    goal: {type: String, required: true},
+    workouts: [
+        {
+            name: { type: String, required: true },
+            workout: [
+                {
+                    name: { type: String, required: true },
+                    sets: { type: Number, required: true },
+                    reps: { type: Number, required: true }
+                }
+            ]
+        }
+    ]
 });
 
 const User = mongoose.model('User', userSchema);
