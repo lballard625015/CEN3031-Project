@@ -9,7 +9,7 @@ const typeDefs = gql`
         age: Int!,
         height: Int!,
         goal: String!,
-        workouts: [Workout]  
+        workouts: [Workout]
     }
 
     type Workout {
@@ -23,13 +23,23 @@ const typeDefs = gql`
         reps: Int!
     }
 
+    type Food {
+        foodName: String!,
+        amount: Int!,
+        calories: Int!,
+        protein: Int!,
+        fat: Int!,
+        carbs: Int!,
+        category: String!,
+    }
+
     type Query {
         getUser(username: String!): Boolean,
         getUserData(username: String!): User,
         getEmail(email: String!): Boolean,
         getPassword(password: String!): Boolean,
         getWorkout(username: String!): [Workout]
-    }
+        getAllFoods: [Food!]!    }
 
     type Mutation {
         createUser(
@@ -39,7 +49,16 @@ const typeDefs = gql`
             age: Int!,
             height: Int!,
             goal: String!
-        ): User
+        ): User,
+        createFood(
+            foodName: String!,
+            amount: Int!,
+            calories: Int!,
+            protein: Int!,
+            fat: Int!,
+            carbs: Int!,
+            category: String!,
+        ):Food
     }
 `;
 
