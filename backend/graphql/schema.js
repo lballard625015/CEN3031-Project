@@ -9,7 +9,8 @@ const typeDefs = gql`
         age: Int!,
         height: Int!,
         goal: String!,
-        workouts: [Workout]
+        workouts: [Workout],
+        streak: Int
     }
 
     type Workout {
@@ -58,7 +59,8 @@ const typeDefs = gql`
             fat: Int!,
             carbs: Int!,
             category: String!,
-        ):Food
+        ):Food,
+        markWorkoutComplete(username: String!, day: String!, workoutName: String!): User
     }
 `;
 

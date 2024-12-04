@@ -56,7 +56,42 @@ const resolvers = {
             await newFood.save();
 
             return newFood;
-        }
+        },
+        markWorkoutComplete: async (_, { username, day, workoutName }) => {
+            const user = await User.findOne({ username });
+            if (!user) throw new Error("User not found");
+        
+            if (!user.completedWorkouts.get(day)) {
+                user.completedWorkouts.set(day, []);
+            }
+        
+            if (!user.completedWorkouts.get(day).includes(workoutName)) {
+                user.completedWorkouts.get(day).push(workoutName);
+            }
+        
+            const allWorkouts = user.workouts.reduce((acc, workout) => {
+                acc.push(...workout.workout.map(w => w.name));
+                return acc;
+            }, []);
+        
+            const completedWorkouts = Array.from(user.completedWorkouts.values()).flat();
+        
+            if (new Set(completedWorkouts).size === allWorkouts.length) {
+                user.streak += 1;
+                user.completedWorkouts = {
+                    Sunday: [],
+                    Monday: [],
+                    Tuesday: [],
+                    Wednesday: [],
+                    Thursday: [],
+                    Friday: [],
+                    Saturday: []
+                };
+            }
+        
+            await user.save();
+            return user;
+        }        
     }
 };
 
