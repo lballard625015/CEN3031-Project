@@ -1,0 +1,20 @@
+//First, read from the csv file and process the results into an array that we can iterate through
+csv = csvReader.process(“pathToCSV”)
+
+//Iterate through each row of the csv array and remove workouts that don’t meet the fitness goal
+Csv = csvReader.filter(csv, “Fitness Goal”)
+
+//Further filter results based on a user’s fitness level, weight, etc
+Csv = csvReader.filter(csv, “Filter”) //Repeat as many times necessary
+
+//Sort the csv array by targeted muscle groups. When we recommend workouts on different dates, the ones on the same dates should target similar muscle groups. Different days, different groups.
+
+//Pull from the final filtered csv array as recommended workouts and post them to the scheduler.
+
+
+
+
+This is to be done after the implementation and testing of the csv reader, which I am currently working on.
+For the time being, we can do this manually on the small dataset we are currently using and store it in
+the database, stored as workouts for each fitness goal. For example, weight loss will have a set of
+workouts and muscle gain will have a set of workouts. There can be overlap etc.
