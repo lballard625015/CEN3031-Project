@@ -4,13 +4,15 @@ import { useQuery, gql, useMutation } from "@apollo/client";
 import { Chart } from "react-google-charts";
 
 function MacroTracker() {
+    // stating variables for tracking user macros and their totals
     let [calories, setCalories] = useState(0);
     let [protein, setProtein] = useState(0);
     let [fat, setFat] = useState(0);
     let [carbs, setCarbs] = useState(0);
-
+    //tracks if data has been loaded from the local storage to prevent the website reloading unnecessarily
     let [firstLoaded, setFirstLoaded] = useState(false);
     if (localStorage.getItem("calories") != null && !firstLoaded) {
+        //load the previously saved macros from the local storage
         setCalories(JSON.parse(localStorage.getItem("calories")));
         setProtein(JSON.parse(localStorage.getItem("protein")));
         setFat(JSON.parse(localStorage.getItem("fat")));
@@ -18,7 +20,7 @@ function MacroTracker() {
 
         setFirstLoaded(true);
     }
-
+    //state for modal visibility and new food form inputs, keeps track of window
     const [showModal, setShowModal] = useState(false);
     const [newFood, setNewFood] = useState({
         foodName: "",
@@ -29,7 +31,7 @@ function MacroTracker() {
         carbs: 0,
         category: "",
     });
-
+    //graphql query to fetch all food items
     const GET_FOODS = gql`
         query {
             getAllFoods {
@@ -43,6 +45,7 @@ function MacroTracker() {
             }
         }
     `;
+    //graphql mutation to create a new food item
     const CREATE_FOOD = gql`
         mutation CreateFood(
             $foodName: String!,
@@ -66,18 +69,20 @@ function MacroTracker() {
             }
         }
     `;
+    //fetching data using query then using mutation hook to create new food item
+    
     const { data, loading, error } = useQuery(GET_FOODS);
     const [createFood] = useMutation(CREATE_FOOD, {
-        refetchQueries: [{ query: GET_FOODS }],
+        refetchQueries: [{ query: GET_FOODS }], //automatically refreshed food list here
     });
-
+    //add the selected food's macros and info to user total
     function addCalories(index) {
         setCalories(calories + data.getAllFoods[index].calories);
         setProtein(protein + data.getAllFoods[index].protein);
         setFat(fat + data.getAllFoods[index].fat);
         setCarbs(carbs + data.getAllFoods[index].carbs);
     }
-
+    //allow reset for new day
     function newDay() {
         setCalories(0);
         setProtein(0);
@@ -92,6 +97,7 @@ function MacroTracker() {
         localStorage.setItem("carbs", JSON.stringify(carbs));
     });
 
+    //update state for new food form inputs
     function handleInputChange(e) {
         const { name, value } = e.target;
         setNewFood({
@@ -122,7 +128,8 @@ function MacroTracker() {
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error.message}</p>;
-
+  
+    //data for macro pie chart
     const graphData = [
         ["Food", "Proportion"],
         ["Protein", protein],
@@ -131,9 +138,11 @@ function MacroTracker() {
     ];
 
     const options = {
-        title: "Your Macro Chart for Today:",
+        title: "Your Macro Chart for Today:",  //chart title
     };
 
+
+    //rendering macro tracker component
     return (
         <div className="macro-tracker">
             <div className="leftside">
