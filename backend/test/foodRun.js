@@ -4,7 +4,7 @@ const API_URL = 'http://localhost:3050';
 
 async function graphqlRequest(query, variables) {
     const response = await fetch(API_URL, {
-        method: 'POST',
+        method: 'POST',   // HTTP POST method used to send GraphQL request
         headers: {
             'Content-Type': 'application/json',
         },
@@ -13,9 +13,10 @@ async function graphqlRequest(query, variables) {
             variables,
         }),
     });
-    return response.json();
+    return response.json();  // this parses then return the response as JSON
 }
 
+//defines graphql mutation for creating food entry
 async function createFood(userData) {
     const mutation = `
         mutation CreateFood(
@@ -47,11 +48,13 @@ async function createFood(userData) {
             }
         }
     `;
+    //send mutation request and store result
     const result = await graphqlRequest(mutation, userData);
-    console.log("result:"+result.data);
+    console.log("result:"+result.data); //debugging
     return result;
 }
 
+//create food entry with provided details given
 async function makeFood(foodName, amount, calories, protein, fat, carbs,category) {
     const errors = [];
     try {
@@ -70,7 +73,7 @@ async function makeFood(foodName, amount, calories, protein, fat, carbs,category
     }
 }
 
-
+//additional pre-made entries that will be added to database if user runs this file
 makeFood("Cow's Milk", 976, 660, 32, 40, 48, "Dairy Products")
     .then(() => console.log("Registration process completed."))
     .catch(error => console.error("Error in registration process:", error));
