@@ -7,7 +7,7 @@ Welcome to WebFit, a web-based application that allows users to track both their
 
 Instructions to Run WebFit Program:
 
-*Ensure you have a working/running mongodb database, install the driver (with npm install mongodb), and insert your connection string (found in "connect") into the backend "index.js" uri slot in line 13.
+*Ensure you have a working/running mongodb database, install the driver (with npm install mongodb), and insert your connection string (found in "connect") into the backend "index.js" URI slot in line 13.
 
 *To run, begin by downloading all dependencies within the frontend and backend in console.
 
